@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Canadian Citizenship Practice Test</title>
+<style>
+:root {
+  --red:#b93f48; --red-dark:#8f2f37; --red-soft:#f8ecee; --ink:#273238;
+  --muted:#6d7b80; --line:#dfe5e7; --panel:#ffffff; --bg:#f6f8f8;
+  --green:#217a52; --green-soft:#e8f4ee; --amber:#956716; --amber-soft:#fff6df;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg)}
+button,select{font:inherit}
+.hero{background:linear-gradient(135deg,var(--red-dark),var(--red));color:white;padding:28px 24px;box-shadow:0 1px 0 rgba(0,0,0,.08)}
+.hero-inner{max-width:1120px;margin:auto}
+.hero h1{margin:0 0 5px;font-size:34px;line-height:1.1}
+.hero p{margin:0;opacity:.9}
+.wrap{max-width:1120px;margin:28px auto;padding:0 18px 48px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:0 6px 24px rgba(38,50,56,.05);margin-bottom:20px}
+h2{margin:0 0 8px;font-size:27px} h3{margin:0}
+.sub{color:var(--muted);margin:0 0 22px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+label{display:block;font-weight:700;margin-bottom:7px;color:#53666d}
+select{width:100%;padding:13px 14px;border:1px solid #cfd9dc;border-radius:10px;background:white;color:var(--ink)}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+.btn{border:0;border-radius:10px;padding:12px 18px;font-weight:750;cursor:pointer}
+.btn-primary{background:var(--red);color:white} .btn-primary:hover{background:var(--red-dark)}
+.btn-secondary{background:white;border:1px solid #d8b7ba;color:var(--red-dark)}
+.feature-row{display:grid;grid-template-columns:repeat(3,1fr);text-align:center;gap:16px;border-top:1px solid var(--line);margin-top:24px;padding-top:20px}
+.feature-row strong{display:block;margin-bottom:4px} .feature-row span{color:var(--muted);font-size:14px}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:18px 0 22px}
+.stat{border:1px solid var(--line);border-radius:12px;padding:16px;background:#fbfcfc}
+.stat .n{font-size:28px;font-weight:800;line-height:1} .stat .l{color:var(--muted);font-size:13px;margin-top:7px}
+.table-wrap{overflow:auto}
+table{width:100%;border-collapse:collapse;min-width:780px}
+th,td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--line);font-size:14px}
+th{color:#52676e;background:#f7f9f9}
+.bar{height:8px;background:#e8edee;border-radius:99px;overflow:hidden;min-width:120px}
+.bar>i{display:block;height:100%;background:var(--red);border-radius:99px}
+.quiz-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:14px}
+.badge{padding:7px 10px;border-radius:999px;background:var(--red-soft);color:var(--red-dark);font-weight:750;font-size:13px}
+.progress{height:8px;background:#e8edee;border-radius:99px;overflow:hidden;margin-bottom:22px} .progress i{display:block;height:100%;background:var(--red)}
+.qtext{font-size:22px;font-weight:750;line-height:1.35;margin:8px 0 18px}
+.option{display:flex;gap:12px;align-items:flex-start;border:1px solid #d7dfe1;border-radius:12px;padding:13px 14px;margin:10px 0;cursor:pointer;background:white}
+.option:hover{border-color:#c08a8f;background:#fffafa}
+.option.selected{border-color:var(--red);background:var(--red-soft)}
+.option.correct{border-color:var(--green);background:var(--green-soft)} .option.wrong{border-color:#c83f4b;background:#fae9eb}
+.letter{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;border:1px solid #cbd5d8;font-weight:800;flex:0 0 auto}
+.feedback{margin-top:15px;padding:12px 14px;border-radius:10px;font-weight:650}
+.feedback.good{background:var(--green-soft);color:var(--green)} .feedback.bad{background:#fae9eb;color:#972c36}
+.nav{display:flex;justify-content:space-between;gap:12px;margin-top:22px}
+.hidden{display:none!important}
+.result{text-align:center;padding:14px 4px 4px} .result-score{font-size:56px;font-weight:900;margin:8px 0}
+.pass{color:var(--green)} .fail{color:#a22f39}
+.result-meta{color:var(--muted);margin-bottom:18px}
+.review-list{text-align:left;margin-top:22px}
+.review-item{border-top:1px solid var(--line);padding:15px 0}
+.small{font-size:13px;color:var(--muted)}
+.notice{background:var(--amber-soft);border:1px solid #ead59f;border-radius:10px;padding:12px 14px;color:#6e541a;font-size:14px}
+.topline{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.reset{background:white;border:1px solid #d8b7ba;color:var(--red-dark);border-radius:10px;padding:9px 12px;cursor:pointer}
+footer{max-width:1120px;margin:0 auto 30px;padding:0 18px;color:var(--muted);font-size:13px}
+@media(max-width:800px){.grid2,.feature-row{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.hero h1{font-size:28px}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="hero-inner">
+  <h1>🍁 Canadian Citizenship Practice Test</h1>
+  <p>Persistent progress tracking, domain practice, missed-question review, and a formal 20-question test.</p>
+</div></header>
+
+<main class="wrap">
+<section id="home">
+  <div class="card">
+    <h2>Choose your practice mode</h2>
+    <p class="sub">Your answer history is saved in this browser. Use the dashboard to monitor coverage and correctness by domain.</p>
+    <div class="grid2">
+      <div>
+        <label for="sourceSelect">Question source</label>
+        <select id="sourceSelect" aria-describedby="sourceHelp">
+          <option value="all">All domains — 146 questions</option>
+          <option value="missed">Previously missed questions</option>
+          <option value="Confederation">Confederation — 4 questions</option>
+          <option value="Culture">Culture — 4 questions</option>
+          <option value="Economy">Economy — 5 questions</option>
+          <option value="Federal Elections">Federal Elections — 21 questions</option>
+          <option value="Federal Government">Federal Government — 19 questions</option>
+          <option value="Geography">Geography — 30 questions</option>
+          <option value="History">History — 17 questions</option>
+          <option value="Indigenous Peoples">Indigenous Peoples — 12 questions</option>
+          <option value="Languages">Languages — 3 questions</option>
+          <option value="Rights and Responsibilities">Rights and Responsibilities — 20 questions</option>
+          <option value="Symbols">Symbols — 11 questions</option>
+        </select>
+        <div class="small" id="sourceHelp" style="margin-top:7px">146 questions available from all domains.</div>
+      </div>
+      <div>
+        <label for="count">Number of questions</label>
+        <select id="count">
+          <option value="10">10 questions</option>
+          <option value="20" selected>20 questions</option>
+          <option value="30">30 questions</option>
+          <option value="50">50 questions</option>
+          <option value="all">All available questions</option>
+        </select>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="btn btn-primary" id="startPractice">Start practice</button>
+      <button class="btn btn-secondary" id="formalTest">Formal test · 20 questions</button>
+      <button class="btn btn-secondary" id="missedOnly">Review missed questions</button>
+    </div>
+    <div class="small" style="margin-top:10px">The Question source selector now directly controls the pool used by <b>Start practice</b>. Formal test always draws 20 random questions from the full federal bank.</div>
+    <div class="feature-row">
+      <div><strong>Persistent memory</strong><span>Tracks every answered and missed question</span></div>
+      <div><strong>Domain analytics</strong><span>Coverage, attempts, and correctness percentages</span></div>
+      <div><strong>Formal test</strong><span>20 questions · pass at 15/20 (75%)</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="topline"><div><h2>Learning progress</h2><p class="sub" style="margin-bottom:0">Embedded federal question bank: 146 questions · no external PDF/JSON required</p></div>
+    <button class="reset" id="reset">Reset saved progress</button></div>
+    <div class="stats" id="stats"></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Domain</th><th>Unique answered</th><th>Coverage</th><th>Attempts</th><th>Correctness</th><th>Missed</th></tr></thead>
+      <tbody id="domainRows"></tbody>
+    </table></div>
+  </div>
+
+  <div class="notice">Question wording and marked answers are drawn from the attached Richmond Public Library question bank. Some current-office-holder questions can become outdated; verify time-sensitive facts before your real test.</div>
+</section>
+
+<section id="quiz" class="hidden">
+  <div class="card">
+    <div class="quiz-head"><div><span class="badge" id="modeBadge">Practice</span><div class="small" id="domainBadge"></div></div><strong id="counter"></strong></div>
+    <div class="progress"><i id="progressBar"></i></div>
+    <div class="qtext" id="question"></div>
+    <div id="options"></div>
+    <div id="feedback" class="feedback hidden"></div>
+    <div class="nav">
+      <button class="btn btn-secondary" id="quit">Quit</button>
+      <button class="btn btn-primary" id="next">Next</button>
+    </div>
+  </div>
+</section>
+
+<section id="results" class="hidden">
+  <div class="card result">
+    <span class="badge" id="resultMode"></span>
+    <div class="result-score" id="resultScore"></div>
+    <h2 id="resultTitle"></h2>
+    <div class="result-meta" id="resultMeta"></div>
+    <div class="actions" style="justify-content:center">
+      <button class="btn btn-primary" id="again">Practice again</button>
+      <button class="btn btn-secondary" id="backHome">Back to dashboard</button>
+    </div>
+    <div class="review-list" id="reviewList"></div>
+  </div>
+</section>
+</main>
+
+<footer>The complete federal question bank is embedded directly inside this HTML file. Progress is stored with your browser's local storage on this device. Clearing browser data or using another browser/device will not carry the history over.</footer>
+
+<script>
+// Embedded question bank extracted from the attached Richmond Public Library PDF.
+// This app is fully self-contained: no external JSON, API, database, or PDF is needed at runtime.
+const BANK = [{"id": 1, "question": "A Member of Parliament from Montreal announces that she will spend her weekend in her electoral district. This means she would be:", "options": ["In her office on Parliament Hill.", "Visiting the province of Quebec.", "In the part of Montreal where she was elected.", "Going on a vacation."], "answer": 2, "sourcePage": 1, "domain": "Geography"}, {"id": 2, "question": "After a federal election, which party forms the new government?", "options": ["The party with the most elected representatives is invited by the Governor General to become the party in power.", "The King himself picks any party to run the government.", "The Governor General proposes a law for elected officials to become the governing body.", "The Premiers of each province pick a party to run the government"], "answer": 0, "sourcePage": 1, "domain": "Federal Elections"}, {"id": 3, "question": "Approximately how many Canadians served in the First World War?", "options": ["7000.", "8 million.", "About 60,000.", "More than 600,000."], "answer": 3, "sourcePage": 1, "domain": "History"}, {"id": 4, "question": "Canada has three territories and how many provinces?", "options": ["13", "10", "3", "5"], "answer": 1, "sourcePage": 1, "domain": "Geography"}, {"id": 5, "question": "Fatima is a new immigrant in Canada. What law allows her to take a job at par with a man?", "options": ["Equality of women and men", "Equality of all races.", "Equal pay for equal work.", "Equal rights."], "answer": 0, "sourcePage": 2, "domain": "Rights and Responsibilities"}, {"id": 6, "question": "From where does the name “Canada” come from?", "options": ["From the Inuit word meaning country.", "From the French word meaning joining.", "From the Métis word meaning rivers.", "From \"Kanata\", the Huron-Iroquois word for village."], "answer": 3, "sourcePage": 2, "domain": "Indigenous Peoples"}, {"id": 7, "question": "Give an example of how you can show responsibility by participating in your community.", "options": ["Mind your own business.", "Have a party.", "Keep your property tidy.", "Volunteer."], "answer": 3, "sourcePage": 2, "domain": "Rights and Responsibilities"}, {"id": 8, "question": "Give an example of where English and French have equal status in Canada.", "options": ["In schools.", "In the workplace.", "In the Parliament of Canada.", "At City Hall."], "answer": 2, "sourcePage": 2, "domain": "Languages"}, {"id": 9, "question": "Give the first line of Canada’s national anthem?", "options": ["O Canada! Our home and native land!", "O Canada! Our province and native land!", "O Canada! From far and wide, O Canada,", "O Canada! We stand on guard for thee."], "answer": 0, "sourcePage": 2, "domain": "Symbols"}, {"id": 10, "question": "How are Members of Parliament chosen?", "options": ["Appointed by the Prime Minister.", "Elected by Canadian citizens.", "Appointed by the King.", "Elected by the Provincial Ministers."], "answer": 1, "sourcePage": 3, "domain": "Federal Government"}, {"id": 11, "question": "How are Senators chosen?", "options": ["By the Governor General of Canada.", "By the Premiers of all provinces.", "Appointed by the King.", "Senators are appointed by the Governor General on the advice of the Prime Minister."], "answer": 3, "sourcePage": 3, "domain": "Geography"}, {"id": 12, "question": "How does a bill become a law?", "options": ["The Lieutenant Governor must approve the bill.", "Approval by a majority in the House of Commons and Senate and finally the Governor General.", "The King must sign the bill.", "Approval by the Members of the Legislative Assembly."], "answer": 1, "sourcePage": 3, "domain": "Federal Government"}, {"id": 13, "question": "How is a Cabinet Minister chosen?", "options": ["By the King.", "By the voters.", "By other Cabinet Ministers.", "By the Prime Minister"], "answer": 3, "sourcePage": 3, "domain": "Federal Elections"}, {"id": 14, "question": "How is the government formed after a federal election?", "options": ["The party with the most elected representatives becomes the party in power. The King chooses the Prime Minister from this party", "Ordinarily, the party with the most elected representatives becomes the party in power. The leader of this party becomes the Prime Minister.", "The Governor General picks a party and a Prime Minister to run the government.", "Each province elects one representative to form the government. The King then chooses the Prime Minister."], "answer": 1, "sourcePage": 3, "domain": "Federal Elections"}, {"id": 15, "question": "How is the Prime Minister chosen?", "options": ["The King appoints the Prime Minister.", "The Governor General with the Senate appoint the Prime Minister.", "The leader of the party with the most elected representatives becomes the Prime Minister.", "The MPs vote on the Prime Minister."], "answer": 2, "sourcePage": 4, "domain": "Federal Elections"}, {"id": 16, "question": "In Canada, are you allowed to question the police about their service or conduct?", "options": ["No, police service and conduct is not open to discussion with Canadians.", "Yes, you can question their service but not their conduct.", "Yes, you can question their conduct but not their service.", "Yes, if you feel the need to."], "answer": 3, "sourcePage": 4, "domain": "Rights and Responsibilities"}, {"id": 17, "question": "In Canada’s justice system what does “presumption of innocence” mean?", "options": ["Everyone is guilty until proven innocent", "Guilt is decided by public opinion", "Innocence is decided by public opinion", "Everyone is innocent until proven guilty"], "answer": 3, "sourcePage": 4, "domain": "Rights and Responsibilities"}, {"id": 18, "question": "In the 1960s, Quebec experienced an era of rapid change. What is this called?", "options": ["The West Movement.", "The Revolution.", "The Quiet Revolution.", "La Francophonie."], "answer": 2, "sourcePage": 4, "domain": "History"}, {"id": 19, "question": "In what industry do most Canadians work?", "options": ["Natural resources", "Tourism.", "Service.", "Manufacturing."], "answer": 2, "sourcePage": 5, "domain": "Economy"}, {"id": 20, "question": "In which region do more than half the people in Canada live?", "options": ["Central Canada.", "Prairies.", "Atlantic Canada.", "Northern Canada."], "answer": 0, "sourcePage": 5, "domain": "Geography"}, {"id": 21, "question": "Name all the federal political parties in the House of Commons and their leaders", "options": ["Conservative (Andrew Scheer - interim leader), NDP (Don Davies - interim leader), Liberal (Mark Carney), Bloc Quebecois (Blanchet), Green Party (May)", "Conservative (Poilievre), Green (May), Liberal (Trudeau), Bloc Quebecois (Duceppe)", "NDP (Mulcair), Green (May), Liberal (Rae), Bloc Quebecois (Paillé)", "Liberal (Ignatieff), Conservative (Ambrose), NDP (Turmel), Green (May)"], "answer": 0, "sourcePage": 5, "domain": "History"}, {"id": 22, "question": "Name six responsibilities of citizenship.", "options": ["Getting a job, making money, raising a family, paying taxes, mowing your lawn, voting in provincial elections.", "Voting in municipal elections only, joining a political party, getting a job, obeying the law, driving safely, picking up litter.", "Caring for the environment, not littering, paying taxes, obeying the law, helping others, respecting others.", "Obeying the law, taking responsibility for oneself and one's family, helping others in the community, voting in elections, serving on a jury, protecting and enjoying our heritage and environment."], "answer": 3, "sourcePage": 5, "domain": "Federal Elections"}, {"id": 23, "question": "Name the five regions of Canada", "options": ["Midwest, North, South, East, Central", "Maritimes, Ontario, Quebec, Prairies, and British Columbia", "Atlantic, Central, Prairie, West Coast, and North", "West, Central, East, Prairies, and Territories"], "answer": 2, "sourcePage": 5, "domain": "Geography"}, {"id": 24, "question": "Name three additional rights protected by the Canadian Charter of Rights and Freedoms", "options": ["Freedom of speech, Right to own land, and Right to a fair trial.", "Mobility rights, Multiculturalism, and Aboriginal Peoples' rights.", "Right to ski anywhere in Canada, Moving rights, and Right to public assembly.", "Right to vote, Right to speak publicly, and Security rights."], "answer": 1, "sourcePage": 6, "domain": "Federal Elections"}, {"id": 25, "question": "Name two fundamental freedoms protected by the Canadian Charter of Rights and Freedoms.", "options": ["Freedom of conscience and religion, and Freedom of association.", "Equality rights, and to care for Canada's heritage.", "Basic freedoms, and obeying laws.", "Aboriginal peoples' rights, and to volunteer."], "answer": 0, "sourcePage": 6, "domain": "Rights and Responsibilities"}, {"id": 26, "question": "Name two key documents that contain our rights and freedoms.", "options": ["The Canadian Constitution and English common law.", "Civil code of France and the Canadian Constitution.", "Canadian Charter of Rights and Freedoms and Magna Carta (the Great Charter of Freedoms).", "Laws passed by Parliament and English common law."], "answer": 2, "sourcePage": 6, "domain": "Rights and Responsibilities"}, {"id": 27, "question": "Name two responsibilities of the federal government.", "options": ["National defence and firefighting.", "National defence and foreign policy.", "Citizenship and highways.", "Recycling and education."], "answer": 1, "sourcePage": 6, "domain": "Rights and Responsibilities"}, {"id": 28, "question": "Name two responsibilities of the provincial and territorial government.", "options": ["Citizenship and Foreign Policy", "Health and Education", "Defense and Currency", "Criminal Law and Interprovincial Trade"], "answer": 1, "sourcePage": 6, "domain": "Rights and Responsibilities"}, {"id": 29, "question": "On what date did Nunavut become a territory?", "options": ["July 1st, 1867", "April 1st, 1999", "June 24th, 1995", "March 31st, 1949"], "answer": 1, "sourcePage": 7, "domain": "Geography"}, {"id": 30, "question": "One third of all Canadians live in which province?", "options": ["Quebec.", "Ontario.", "Northwest Territories.", "Manitoba."], "answer": 1, "sourcePage": 7, "domain": "Geography"}, {"id": 31, "question": "The Canadian Coat of Arms and motto is “A Mari Usque Ad Mare.” This means:", "options": ["From the ocean to the sea.", "From sea to sea.", "From the sea to the ends of the earth.", "From the water to the earth."], "answer": 1, "sourcePage": 7, "domain": "Symbols"}, {"id": 32, "question": "What are some examples of taking responsibility for yourself and your family?", "options": ["Buying a house and a TV.", "Getting a job, taking care of one's family and working hard in keeping with one's abilities.", "Doing laundry and keeping the house clean.", "Study hard so you can earn enough money to take a vacation."], "answer": 1, "sourcePage": 7, "domain": "Rights and Responsibilities"}, {"id": 33, "question": "What are the Prairie provinces and their capital cities?", "options": ["Alberta (Edmonton) and Saskatchewan (Regina).", "Alberta (Edmonton), Saskatchewan (Regina) and Manitoba (Winnipeg).", "Saskatchewan (Regina) and Manitoba (Winnipeg).", "Saskatchewan (Regina), Manitoba (Winnipeg) and Ontario (Toronto)."], "answer": 1, "sourcePage": 7, "domain": "Geography"}, {"id": 34, "question": "What are the provinces of Central Canada and their capital cities?", "options": ["Manitoba (Winnipeg) and Ontario (Toronto).", "Quebec (Quebec City) and Prince Edward Island (Charlottetown).", "Ontario (Toronto) and Quebec (Quebec City).", "Saskatchewan (Regina) and Manitoba Winnipeg)."], "answer": 2, "sourcePage": 8, "domain": "Geography"}, {"id": 35, "question": "What are the provinces of the Atlantic region and their capital cities?", "options": ["Nova Scotia (Halifax), New Brunswick (Fredericton), Prince Edward Island (Charlottetown) and Quebec (Quebec).", "Newfoundland and Labrador (St. John's), Nova Scotia (Halifax), New Brunswick (Fredericton) and Prince Edward Island (Charlottetown).", "Newfoundland and Labrador (St. John's), Nova Scotia (Halifax), New Brunswick (Fredericton) and Quebec (Quebec).", "Nova Scotia (Halifax), New Brunswick (Fredericton), Quebec (Quebec City)and Ontario (Toronto)."], "answer": 1, "sourcePage": 8, "domain": "Geography"}, {"id": 36, "question": "What are the territories of Northern Canada and their capital cities?", "options": ["Alaska (Juneau) and Yukon Territory ( Whitehorse).", "Northwest Territories (Yellowknife) and Alaska (Juneau).", "Northwest Territories (Yellowknife).", "Yukon Territory (Whitehorse), Northwest Territories (Yellowknife), and Nunavut (Iqaluit)."], "answer": 3, "sourcePage": 8, "domain": "Geography"}, {"id": 37, "question": "What are the three levels of government in Canada?", "options": ["Federal, Provincial and Territorial, Municipal (local).", "Federal, Provincial and City.", "Federal, Territorial and Provincial.", "Federal, State and Local."], "answer": 0, "sourcePage": 8, "domain": "Geography"}, {"id": 38, "question": "What are the three main groups of Aboriginal peoples?", "options": ["First Nations, Métis and Inuit.", "Acadians, Métis and Inuit.", "United Empire Loyalists, Métis and Inuit.", "Inuit, Métis and Acadians."], "answer": 0, "sourcePage": 9, "domain": "Indigenous Peoples"}, {"id": 39, "question": "What are the three main types of industry in Canada?", "options": ["Natural resources, tourism and service industries..", "Tourism, services and manufacturing.", "Natural resources, tourism and manufacturing.", "Natural resources, manufacturing and services."], "answer": 3, "sourcePage": 9, "domain": "Economy"}, {"id": 40, "question": "What are the three parts of Parliament?", "options": ["The Sovereign, Governor General and Prime Minister.", "The House of Commons, the Legislative Assembly and the Senate.", "The King, the Legislative Assembly and the Senate.", "The Sovereign, the House of Commons and the Senate."], "answer": 3, "sourcePage": 9, "domain": "Federal Government"}, {"id": 41, "question": "What are the two official languages of Canada?", "options": ["English and Métis.", "Inuktitut and French.", "English and French.", "English and Inuktitut."], "answer": 2, "sourcePage": 9, "domain": "Indigenous Peoples"}, {"id": 42, "question": "What country is Canada’s largest trading partner?", "options": ["Mexico.", "United States of America.", "China.", "Japan."], "answer": 1, "sourcePage": 9, "domain": "History"}, {"id": 43, "question": "What did the Canadian Pacific Railway symbolize?", "options": ["Easy access to the West Coast.", "What can be achieved by working together.", "Unity.", "Ribbons of steel."], "answer": 2, "sourcePage": 10, "domain": "Symbols"}, {"id": 44, "question": "What did the Fathers of Confederation do?", "options": ["They worked together to establish a new country, the Dominion of Canada", "They were explorers who formed an expedition to survey Northern Canada", "They formed a republic state in Canada", "They were a group of politicians that tried to unite Canada to the United States"], "answer": 0, "sourcePage": 10, "domain": "Geography"}, {"id": 45, "question": "What do you call a law before it is passed?", "options": ["A New law.", "A Proposed law.", "A Bill.", "A New proposal."], "answer": 2, "sourcePage": 10, "domain": "History"}, {"id": 46, "question": "What do you call the Sovereign’s representative in the provinces?", "options": ["Premier.", "Member of the Legislative Assembly.", "Lieutenant-Governor.", "Senator."], "answer": 2, "sourcePage": 10, "domain": "Geography"}, {"id": 47, "question": "What do you mark on a federal election ballot?", "options": ["The candidate\\'s name.", "The number for the candidate.", "An x", "The voter\\'s name."], "answer": 2, "sourcePage": 10, "domain": "Federal Elections"}, {"id": 48, "question": "What does Confederation mean?", "options": ["The United States Confederate soldiers came to Canada.", "Joining of communities to become a province.", "Joining of suburbs to form a large city.", "Joining of provinces to make a new country."], "answer": 3, "sourcePage": 11, "domain": "Geography"}, {"id": 49, "question": "What does it mean to say Canada is a constitutional monarchy?", "options": ["The Sovereign (Queen or King) is the law maker of Canada.", "Canada's Head of State is a hereditary Sovereign (Queen or King) who reigns in accordance with the Constitution.", "The Sovereign (Queen or King) represents Canadians in Parliament.", "The Sovereign (Queen or King) approves bills before becoming law."], "answer": 1, "sourcePage": 11, "domain": "Federal Government"}, {"id": 50, "question": "What does the “right to a secret ballot” mean?", "options": ["No one should tell you where to vote", "A secret vote used by politicians when they are voting on sensitive topics", "No one can watch your vote and no one should look at how you voted", "Your right to vote in secret on who to appoint to the Senate"], "answer": 2, "sourcePage": 11, "domain": "Federal Elections"}, {"id": 51, "question": "What does the Canadian flag look like?", "options": ["Red and white with provincial emblems.", "Red and white with a beaver.", "White with a red border on each end and a red maple leaf in the centre.", "Red with a white maple leaf."], "answer": 2, "sourcePage": 11, "domain": "Symbols"}, {"id": 52, "question": "What does the term “responsible government” mean?", "options": ["Each person in each electoral district is responsible for voting.", "The Governor General is responsible for the actions of the Prime Minister.", "The ministers of the Crown must have the support of a majority of the elected representatives in order to govern.", "All Canadians are responsible for each other."], "answer": 2, "sourcePage": 11, "domain": "Federal Government"}, {"id": 53, "question": "What does the word “Inuit” mean?", "options": ["Eskimo in Inuktitut", "House in English", "The people in Inuktitut", "Arctic land in Inuktitut"], "answer": 2, "sourcePage": 12, "domain": "Indigenous Peoples"}, {"id": 54, "question": "What happened at the Battle of the Plains of Abraham?", "options": ["The Voyagers battled with the British for fur trading rights", "Americans fought the United Empire Loyalists during the American Revolution", "The British defeated the French marking the end of France's empire in America", "The French defeated the British in a battle for Quebec"], "answer": 2, "sourcePage": 12, "domain": "Rights and Responsibilities"}, {"id": 55, "question": "What is a Francophone?", "options": ["A person who speaks English as their first language", "A smartphone designed by the Canadian company RIM", "A person who speaks French as their first language", "The first phone in Canada, invented by Alexander Graham Bell"], "answer": 2, "sourcePage": 12, "domain": "Languages"}, {"id": 56, "question": "What is a major river in Quebec?", "options": ["Fraser River", "St. Lawrence River", "Niagara", "Hudson's Bay."], "answer": 1, "sourcePage": 12, "domain": "Geography"}, {"id": 57, "question": "What is a majority government?", "options": ["When the party in power holds about one third of the seats in the House of Commons", "When the party in power holds about one quarter of the seats in the House of Commons.", "When the part in power holds at least half of the seats in the Senate.", "When the party in power holds at least half of the seats in the House of Commons."], "answer": 3, "sourcePage": 12, "domain": "Federal Government"}, {"id": 58, "question": "What is a voter information card?", "options": ["Tells you who the candidates are in your electoral district.", "Tells you what province to vote in.", "A form that tells you when and where to vote.", "A form that lets you know your voting time."], "answer": 2, "sourcePage": 13, "domain": "Federal Elections"}, {"id": 59, "question": "What is Canada’s national winter sport?", "options": ["Golf.", "Nordic skiing.", "Lacrosse.", "Hockey."], "answer": 3, "sourcePage": 13, "domain": "Culture"}, {"id": 60, "question": "What is Canada’s system of government called?", "options": ["Dictatorship.", "Parliamentary government.", "Military Rule.", "Communism."], "answer": 1, "sourcePage": 13, "domain": "Federal Government"}, {"id": 61, "question": "What is meant by the equality of women and men?", "options": ["Men and women are equal under the law.", "Men and women must both do housework.", "Women may now go to school and enter the professional workforce.", "A woman may now become Prime Minister."], "answer": 0, "sourcePage": 13, "domain": "Rights and Responsibilities"}, {"id": 62, "question": "What is the “head tax”?", "options": ["Race-based entry fee charged for Chinese entering Canada.", "Fee charged for anyone entering Canada after 1900.", "A tax imposed on beer beginning in 1867.", "Fee charged for moving westward in the early 1900s."], "answer": 0, "sourcePage": 13, "domain": "History"}, {"id": 63, "question": "What is the capital city of Canada?", "options": ["Ottawa.", "Toronto.", "Montreal.", "Hull."], "answer": 0, "sourcePage": 14, "domain": "Geography"}, {"id": 64, "question": "What is the difference between the role of the Sovereign and that of the Prime Minister?", "options": ["The Sovereign is Head of State, the Prime Minister oversees provincial policies.", "The Sovereign is the guardian of Constitutional freedoms, the Prime Minister selects the Cabinet ministers and is responsible for operations and policy of government.", "The Sovereign links Canada to 52 other nations and the Prime Minister is the guardian of Constitutional freedoms.", "The Sovereign is the symbol of Canadian sovereignty and the Prime Minister is her aide."], "answer": 1, "sourcePage": 14, "domain": "Rights and Responsibilities"}, {"id": 65, "question": "What is the government of all of Canada called?", "options": ["National assembly.", "Legislature.", "Federal.", "Council."], "answer": 2, "sourcePage": 14, "domain": "Federal Government"}, {"id": 66, "question": "What is the highest court in Canada?", "options": ["The King\\'s Bench", "The Senate Court of Canada", "The Supreme Court of Canada", "The Crown Court of Canada"], "answer": 2, "sourcePage": 14, "domain": "Rights and Responsibilities"}, {"id": 67, "question": "What is the highest military honour a Canadian can receive?", "options": ["Purple Cross.", "Badge of Courage.", "Order of Merit.", "Victoria Cross."], "answer": 3, "sourcePage": 15, "domain": "Symbols"}, {"id": 68, "question": "What is the largest religious affiliation in Canada?", "options": ["Catholic.", "Muslim.", "Jewish.", "Hindu."], "answer": 0, "sourcePage": 15, "domain": "Culture"}, {"id": 69, "question": "What is the meaning of the Remembrance Day poppy?", "options": ["To remember our Sovereign, King Charles III.", "To celebrate Confederation.", "To honour Prime Ministers who have died.", "To remember the sacrifice of Canadians who have served or died in wars up to the present day."], "answer": 3, "sourcePage": 15, "domain": "Symbols"}, {"id": 70, "question": "What is the name of the Governor General?", "options": ["David Johnston.", "Louise Arbour.", "Richard Wagner.", "Julie Payette"], "answer": 1, "sourcePage": 15, "domain": "Federal Government"}, {"id": 71, "question": "What is the name of the Prime Minister of Canada and his/her party?", "options": ["Mark Carney (Liberal Party).", "Pierre Poilievre (Conservative Party).", "Jagmeet Singh (New Democratic Party).", "Pierre Trudeau (Liberal Party)."], "answer": 0, "sourcePage": 15, "domain": "Federal Government"}, {"id": 72, "question": "What is the name of the Royal Anthem of Canada?", "options": ["O Canada.", "God Save the Queen (or King).", "La Marseillaise", "The Star-Spangled Banner."], "answer": 1, "sourcePage": 16, "domain": "Symbols"}, {"id": 73, "question": "What is the role of the courts in Canada?", "options": ["To enforce the law.", "To guide people in our society.", "To settle disputes.", "To express values and beliefs of Canadians."], "answer": 2, "sourcePage": 16, "domain": "Rights and Responsibilities"}, {"id": 74, "question": "What is the role of the Opposition parties?", "options": ["To assist the Prime Minister.", "To sign bills.", "To oppose or try to improve government proposals.", "To put forward bills to be passed."], "answer": 2, "sourcePage": 16, "domain": "Federal Government"}, {"id": 75, "question": "What is the significance of the discovery of insulin by Sir Frederick Banting and Charles Best?", "options": ["Insulin is a hormone that permits you to eat anything you wish.", "Insulin has saved 16 million lives worldwide.", "Discovering insulin opened the doors to more discoveries.", "Discovering insulin made Drs. Banting and Best famous."], "answer": 1, "sourcePage": 16, "domain": "Culture"}, {"id": 76, "question": "What part of the Constitution legally protects the basic rights and freedoms of all Canadians?", "options": ["The British Charter of Rights and Freedoms.", "The Canadian Charter of Rights.", "The Canadian Charter of Freedoms.", "The Canadian Charter of Rights and Freedoms."], "answer": 3, "sourcePage": 16, "domain": "Rights and Responsibilities"}, {"id": 77, "question": "What percentage of Aboriginal people are First Nations?", "options": ["30%.", "6%.", "50%.", "65%."], "answer": 3, "sourcePage": 17, "domain": "Indigenous Peoples"}, {"id": 78, "question": "What should you do if you do not receive a voter information card telling you when and where to vote?", "options": ["Go to the police station.", "Call your Member of Parliament.", "Assume you cannot vote.", "Call Elections Canada or visit their website."], "answer": 3, "sourcePage": 17, "domain": "Federal Elections"}, {"id": 79, "question": "What song is Canada’s national anthem?", "options": ["God Save the King.", "O Canada.", "Star Spangled Banner.", "Amazing Grace."], "answer": 1, "sourcePage": 17, "domain": "Symbols"}, {"id": 80, "question": "What three oceans border Canada?", "options": ["Atlantic, Arctic and Bering.", "Atlantic, Arctic and Pacific.", "Pacific, Indian and Atlantic.", "Hudson, Pacific and Atlantic."], "answer": 1, "sourcePage": 17, "domain": "Geography"}, {"id": 81, "question": "What was the “Underground Railroad”?", "options": ["An anti-slavery network that helped thousands of slaves escape the United States and settle in Canada", "A railroad through the Rockies that was mainly through mountain tunnels", "A network fur traders used to transport beaver pelts to the United States", "The first underground subway tunnel in Toronto"], "answer": 0, "sourcePage": 17, "domain": "Symbols"}, {"id": 82, "question": "What was the significance of June 6, 1944 invasion of Normandy?", "options": ["It led to the establishment of the Juno Awards.", "It liberated North Africa from Nazi occupation.", "Canadians made a significant contribution to the defeat of Nazism and Fascism in Europe during the Second World War.", "It resulted in the forcible relocation of Canadians of Japanese origin."], "answer": 2, "sourcePage": 18, "domain": "History"}, {"id": 83, "question": "What was the Women’s Suffrage Movement?", "options": ["The effort by women to achieve the right to vote.", "The effort by women to participate in military service.", "An unsuccessful movement to get husbands to do housework.", "The effort by women to be in Parliament."], "answer": 0, "sourcePage": 18, "domain": "Federal Elections"}, {"id": 84, "question": "What will you promise when you take the Oath of Citizenship?", "options": ["Pledge allegiance to the King, observe the laws of Canada and fulfil the duties of a Canadian.", "Pledge to be faithful to the King.", "Promise to observe the laws of Canada.", "Fulfil duties as a Canadian citizen."], "answer": 0, "sourcePage": 18, "domain": "Federal Government"}, {"id": 85, "question": "What year did Newfoundland and Labrador join Canada?", "options": ["1867", "1955", "1949", "1880"], "answer": 2, "sourcePage": 18, "domain": "History"}, {"id": 86, "question": "What year was Confederation?", "options": ["1867.", "1871.", "1898.", "1864."], "answer": 0, "sourcePage": 18, "domain": "Confederation"}, {"id": 87, "question": "When asked, who must you tell how you voted in a federal election?", "options": ["Your employer.", "No one.", "A police officer.", "An Elections Canada official."], "answer": 1, "sourcePage": 19, "domain": "Federal Elections"}, {"id": 88, "question": "When did the British North America Act come into effect?", "options": ["1871.", "1898.", "1867.", "1905."], "answer": 2, "sourcePage": 19, "domain": "Confederation"}, {"id": 89, "question": "When did the Canadian Charter of Rights and Freedoms become part of the Canadian Constitution?", "options": ["1867.", "1905.", "1982.", "1878."], "answer": 2, "sourcePage": 19, "domain": "Rights and Responsibilities"}, {"id": 90, "question": "When is Canada Day and what does it celebrate?", "options": ["June 15 of each year to celebrate the anniversary of Confederation.", "August 8th of each year to celebrate the joining of British Columbia to Confederation.", "We celebrate the anniversary of Confederation July 1st of each year.", "May 21st of each year to remember Queen Victoria."], "answer": 2, "sourcePage": 19, "domain": "Confederation"}, {"id": 91, "question": "When is Remembrance Day celebrated?", "options": ["July 1st", "October 1st.", "November 11th.", "December 25th"], "answer": 2, "sourcePage": 19, "domain": "Culture"}, {"id": 92, "question": "When must federal elections be held?", "options": ["About every 4 years.", "On the third Monday in October every four years following the most recent general election.", "Whenever the Prime Minister calls the election.", "When the MPs want a new Prime Minister."], "answer": 1, "sourcePage": 20, "domain": "Federal Elections"}, {"id": 93, "question": "When you vote on election day, what do you do?", "options": ["Go to the voting station, tell them who you are and mark your X. Give the ballot back to the attendant.", "Go to the voting station, remove 1 ballot and after marking your X deposit it in the ballot box.", "Go to the voting station, take your voter\\'s card with proof if identity, highlight your choice on the ballot and deposit it in the box.", "Go to the voting station with your voter\\'s card and ID, mark an X next to your chosen candidate, fold the ballot and present it to the poll officials who will tear off the ballot number and give you the ballot to deposit in the box"], "answer": 3, "sourcePage": 20, "domain": "Federal Elections"}, {"id": 94, "question": "Where are the Great Lakes?", "options": ["Between Ontario and the United States", "Manitoba.", "Northern Quebec.", "Atlantic Canada."], "answer": 0, "sourcePage": 20, "domain": "Geography"}, {"id": 95, "question": "Where are the Parliament Buildings located?", "options": ["Ottawa.", "Quebec City.", "Hull.", "Toronto."], "answer": 0, "sourcePage": 20, "domain": "Federal Government"}, {"id": 96, "question": "Where do most French-speaking Canadians live?", "options": ["Ontario.", "Nova Scotia.", "Quebec.", "Prince Edward Island."], "answer": 2, "sourcePage": 20, "domain": "Languages"}, {"id": 97, "question": "Where does Canada rank in the world’s largest countries?", "options": ["First", "Second", "Third", "Fourth"], "answer": 1, "sourcePage": 21, "domain": "Geography"}, {"id": 98, "question": "Which Act granted, for the first time in Canada, legislative assemblies elected by the people?", "options": ["The Constitutional Act of 1867.", "The Constitutional Act of 1791.", "The Constitutional Act of 1982.", "The Constitutional Act of 2010."], "answer": 1, "sourcePage": 21, "domain": "History"}, {"id": 99, "question": "Which animal is an official symbol of Canada?", "options": ["The moose.", "The hawk.", "The beaver.", "The deer."], "answer": 2, "sourcePage": 21, "domain": "Symbols"}, {"id": 100, "question": "Which country borders Canada on the south?", "options": ["United States of America.", "Central America.", "Mexico.", "Washington."], "answer": 0, "sourcePage": 21, "domain": "History"}, {"id": 101, "question": "Which federal political party is in power?", "options": ["Green Party.", "New Democratic Party.", "Liberal Party.", "Conservative Party."], "answer": 2, "sourcePage": 21, "domain": "Federal Elections"}, {"id": 102, "question": "Which of the following is NOT a feature of Canada’s system of government?", "options": ["A federal state.", "Parliamentary democracy.", "Constitutional Monarchy.", "Dictatorship."], "answer": 3, "sourcePage": 22, "domain": "Federal Government"}, {"id": 103, "question": "Which of the following sentences best describes the War of 1812?", "options": ["Napoleon's fleet was defeated by the Royal Navy in the war.", "The USA became independent from the British Empire after the war.", "The USA invaded Canada and was defeated, which ensured that Canada would remain independent of the United States.", "Canada joined the United States after the war."], "answer": 2, "sourcePage": 22, "domain": "History"}, {"id": 104, "question": "Which of the following statements about residential schools is NOT true?", "options": ["The federal government placed many Aboriginal children in residential schools to educate and assimilate them into mainstream Canadian culture.", "The schools were poorly funded and inflicted hardship on the students.", "The schools were welcomed by the Aboriginal people.", "Aboriginal language and cultural practices were mostly prohibited."], "answer": 2, "sourcePage": 22, "domain": "Indigenous Peoples"}, {"id": 105, "question": "Which party becomes the Official Opposition?", "options": ["The party with the second most MPs.", "The party receiving the least votes.", "Any independent candidate.", "The party the Prime Minister selects."], "answer": 0, "sourcePage": 22, "domain": "Federal Elections"}, {"id": 106, "question": "Which party is the Official Opposition at the federal level?", "options": ["The New Democratic Party.", "The Liberal Party.", "The Independent Party.", "The Conservative Party."], "answer": 3, "sourcePage": 23, "domain": "Federal Elections"}, {"id": 107, "question": "Which port is the largest and busiest in Canada?", "options": ["The Port of Halifax", "The Port of Montreal", "The Port of Vancouver", "The Port of Victoria"], "answer": 2, "sourcePage": 23, "domain": "History"}, {"id": 108, "question": "Which province has its own time zone?", "options": ["British Columbia", "Newfoundland and Labrador", "Nunavut", "Nova Scotia"], "answer": 1, "sourcePage": 23, "domain": "Geography"}, {"id": 109, "question": "Which province in Canada is the smallest in land size?", "options": ["Nova Scotia.", "Prince Edward Island.", "Yukon Territory.", "Newfoundland and Labrador."], "answer": 1, "sourcePage": 23, "domain": "Geography"}, {"id": 110, "question": "Which province is the main producer of pulp and paper and hydro-electricity?", "options": ["Quebec", "Ontario", "British Columbia", "Manitoba"], "answer": 0, "sourcePage": 23, "domain": "Geography"}, {"id": 111, "question": "Which province is the only officially bilingual province?", "options": ["New Brunswick.", "Quebec.", "Ontario.", "Prince Edward Island."], "answer": 0, "sourcePage": 24, "domain": "Geography"}, {"id": 112, "question": "Which province was split into two at Confederation?", "options": ["Lower Canada", "Newfoundland", "Upper Canada", "The Province of Canada"], "answer": 3, "sourcePage": 24, "domain": "Geography"}, {"id": 113, "question": "Which province was the first to grant voting rights to women?", "options": ["Quebec", "Ontario", "Nova Scotia", "Manitoba"], "answer": 3, "sourcePage": 24, "domain": "Rights and Responsibilities"}, {"id": 114, "question": "Which provincial flag features the fleur-de-lys?", "options": ["Quebec", "New Brunswick", "Manitoba", "Ontario"], "answer": 0, "sourcePage": 24, "domain": "Symbols"}, {"id": 115, "question": "Which region covers more than one-third of Canada?", "options": ["Central Canada.", "Prairies.", "Atlantic Canada.", "Northern Territories."], "answer": 3, "sourcePage": 24, "domain": "Geography"}, {"id": 116, "question": "Which region is known as the industrial and manufacturing heartland of Canada?", "options": ["Atlantic provinces.", "Prairie provinces.", "Central Canada.", "West Coast."], "answer": 2, "sourcePage": 25, "domain": "Geography"}, {"id": 117, "question": "Which region of Canada is known for both its fertile agricultural land and valuable energy resources?", "options": ["British Columbia.", "Prairie provinces.", "Ontario.", "Manitoba."], "answer": 1, "sourcePage": 25, "domain": "Geography"}, {"id": 118, "question": "Which three countries are signatories to NAFTA?", "options": ["Canada, the United Kingdom and the United States.", "Canada, the United States and Japan.", "Canada, Mexico and the United States.", "Canada, Denmark and Andorra."], "answer": 2, "sourcePage": 25, "domain": "Economy"}, {"id": 119, "question": "Which was the last province to join Canada?", "options": ["Newfoundland.", "Alberta.", "Saskatchewan.", "British Columbia."], "answer": 0, "sourcePage": 25, "domain": "Geography"}, {"id": 120, "question": "Who are the Aboriginal peoples of Canada?", "options": ["The first European settlers to arrive in Canada", "The descendents of the first Australian immigrants to Canada", "The first people to live in Canada", "The first settlers of Newfoundland"], "answer": 2, "sourcePage": 25, "domain": "Indigenous Peoples"}, {"id": 121, "question": "Who are the Acadians?", "options": ["Aboriginal people of the arctic.", "French-speaking Catholics living in Ontario.", "The descendants of French colonists who began settling in what are now the Maritime provinces in 1604.", "English speaking refugees who settled in Louisiana."], "answer": 2, "sourcePage": 26, "domain": "Indigenous Peoples"}, {"id": 122, "question": "Who are the founding peoples of Canada?", "options": ["Métis, French and British.", "Aboriginal, Métis and British.", "Inuit, Aboriginal and British.", "Aboriginal, French and British."], "answer": 3, "sourcePage": 26, "domain": "Indigenous Peoples"}, {"id": 123, "question": "Who are the Métis?", "options": ["The distinct aboriginal people of Atlantic Canada.", "A people of mixed Inuit/First Nations ancestry most of whom live on the Prairies.", "First Nations people speaking the Michif dialect.", "A distinct people of mixed Aboriginal and European ancestry."], "answer": 3, "sourcePage": 26, "domain": "Indigenous Peoples"}, {"id": 124, "question": "Who are the Quebecers?", "options": ["European settlers in the 1600s.", "Descendants of the French colonists.", "Descendants of the Anglophones.", "People of Quebec."], "answer": 3, "sourcePage": 26, "domain": "History"}, {"id": 125, "question": "Who do Canadians vote for in a federal election?", "options": ["The best speaker running in the election.", "A candidate they want to represent them in Parliament.", "Someone to become the Premier.", "All of the candidates in their electoral district."], "answer": 1, "sourcePage": 26, "domain": "Federal Elections"}, {"id": 126, "question": "Who do Members of Parliament represent?", "options": ["All of the Canadians living in the north.", "Only Canadians living in Central Canada.", "Everyone who lives in his or her electoral district.", "Canadians living in the province in which he/she was elected."], "answer": 2, "sourcePage": 27, "domain": "Geography"}, {"id": 127, "question": "Who had played an important part in building the Canadian Pacific Railway (CPR)?", "options": ["American railroad engineers.", "Acadian railroad workers.", "Chinese railroad workers.", "African American slaves."], "answer": 2, "sourcePage": 27, "domain": "History"}, {"id": 128, "question": "Who has the right to run as a candidate in federal elections?", "options": ["Anyone.", "A Canadian citizen who is 16 years old.", "Any man who is at least 18 years old.", "Any Canadian citizen who is at least 18 years old."], "answer": 3, "sourcePage": 27, "domain": "Federal Elections"}, {"id": 129, "question": "Who has the right to vote in federal elections?", "options": ["A Canadian citizen, 18 years or older, and on voters' list.", "A Canadian citizen, 18 years or older and must work for the federal government.", "A landed immigrant, 18 years old and a memberof the Canadian Forces.", "A Canadian citizen, over 25 years and a member of the Canadian Forces."], "answer": 0, "sourcePage": 27, "domain": "Federal Elections"}, {"id": 130, "question": "Who have major responsibilities on First Nations reserves?", "options": ["Band chiefs and councillors.", "Municipal governments.", "Provincial and territorial governments.", "Federal government."], "answer": 0, "sourcePage": 27, "domain": "Rights and Responsibilities"}, {"id": 131, "question": "Who is Canada’s Head of State?", "options": ["Governor General of Canada.", "His Majesty King Charles III.", "Prime Minister.", "Lieutenant Governor."], "answer": 1, "sourcePage": 28, "domain": "Federal Government"}, {"id": 132, "question": "Who is considered the father of Manitoba?", "options": ["John A. Macdonald", "Sam Steele", "Alfred Boyd", "Louis Riel"], "answer": 3, "sourcePage": 28, "domain": "History"}, {"id": 133, "question": "Who is General Sir Arthur Currie?", "options": ["A military leader of the Métis in the 19th century.", "A great frontier hero.", "An explorer of western Canada.", "Canada's greatest soldier in the First World War."], "answer": 3, "sourcePage": 28, "domain": "Indigenous Peoples"}, {"id": 134, "question": "Who is the Head of Government?", "options": ["The President", "The King", "The Governor General", "The Prime Minister"], "answer": 3, "sourcePage": 28, "domain": "Federal Government"}, {"id": 135, "question": "Who is the King’s representative in Canada?", "options": ["Prime Minister of Canada.", "Premier.", "Lieutenant-Governor.", "Governor General of Canada."], "answer": 3, "sourcePage": 28, "domain": "Federal Government"}, {"id": 136, "question": "Who is the leader of the Federal Official Opposition Party?", "options": ["Thomas Mulcair", "Andrew Scheer", "Pierre Poilievre", "Elizabeth May"], "answer": 2, "sourcePage": 29, "domain": "Federal Elections"}, {"id": 137, "question": "Who led an armed uprising and seized Fort Garry?", "options": ["John A. Macdonald", "Louis Riel", "Sam Steele", "George-Étienne Cartier"], "answer": 1, "sourcePage": 29, "domain": "History"}, {"id": 138, "question": "Who led Quebec into Confederation?", "options": ["Sir Louis-Hippolyte La Fontaine", "Sir George-Étienne Cartier", "Sir Wilfrid Laurier", "Sir John A. Macdonald"], "answer": 1, "sourcePage": 29, "domain": "Confederation"}, {"id": 139, "question": "Who was Sir Louis-Hippolyte La Fontaine?", "options": ["A champion of democracy and Aboriginal rights.", "A champion of democracy and French language rights and the first leader of a responsible government in the Canadas.", "The first Head of State.", "The first French speaking Prime Minister."], "answer": 1, "sourcePage": 29, "domain": "Rights and Responsibilities"}, {"id": 140, "question": "Who was Sir Sam Steele?", "options": ["A great frontier hero, Mounted Policeman and soldier.", "A military leader of the Métis in the 19th century.", "The first Prime Minister of Canada.", "The Father of Manitoba."], "answer": 0, "sourcePage": 29, "domain": "Rights and Responsibilities"}, {"id": 141, "question": "Who was the first leader of a responsible government in the Canadas in 1849?", "options": ["Sir John A. Macdonald.", "Robert Baldwin.", "Louis Riel.", "Sir Louis-Hippolyte La Fontaine."], "answer": 3, "sourcePage": 30, "domain": "Federal Government"}, {"id": 142, "question": "Who was the first Prime Minister of Canada?", "options": ["Louis Riel.", "Sir John A. Macdonald.", "Lester B. Pearson.", "Abraham Lincoln."], "answer": 1, "sourcePage": 30, "domain": "Federal Government"}, {"id": 143, "question": "Who were the United Empire Loyalists?", "options": ["Settlers who came to Canada from the United States during the American Revolution.", "Aboriginal peoples.", "Métis", "Inuit."], "answer": 0, "sourcePage": 30, "domain": "Indigenous Peoples"}, {"id": 144, "question": "Who were the Voyagers?", "options": ["Montreal-based traders who travelled by canoe", "Immigrants to Canada in the 18th Century", "Explorers searching for the North-West Passage", "Geographers who first charted the coastline of British Columbia"], "answer": 0, "sourcePage": 30, "domain": "Economy"}, {"id": 145, "question": "Why is the battle of Vimy Ridge important?", "options": ["It was a key position of the German line in Northern Spain.", "Canadian Corps secured its reputation for valour and bravery.", "It was the \"hinge\" of the German line as it protected the newly constructed Hindenburg line.", "Once Canadians fought at Vimy they knew they would be heading home."], "answer": 1, "sourcePage": 30, "domain": "History"}, {"id": 146, "question": "Why is trade with other countries important to Canada?", "options": ["It enhances our standard of living.", "It makes it easier for us to travel to foreign countries.", "It enhances our economy and raises our standard of living.", "It brings in cheaper goods."], "answer": 2, "sourcePage": 31, "domain": "Economy"}];
+const DOMAINS=[...new Set(BANK.map(q=>q.domain))].sort();
+const KEY="citizenshipStudyProgress_v1";
+
+function defaultState(){return {questions:{},testsCompleted:0}}
+function loadState(){try{return JSON.parse(localStorage.getItem(KEY))||defaultState()}catch{return defaultState()}}
+function saveState(){localStorage.setItem(KEY,JSON.stringify(state))}
+let state=loadState();
+
+const $=id=>document.getElementById(id);
+const sourceSelect=$("sourceSelect");
+
+function sourcePool(){
+  const value=sourceSelect.value;
+  if(value==="all") return BANK;
+  if(value==="missed") return BANK.filter(q=>qstate(q.id).wrong>0);
+  return BANK.filter(q=>q.domain===value);
+}
+
+function updateSourceUI(){
+  const pool=sourcePool();
+  const label=sourceSelect.options[sourceSelect.selectedIndex]?.text || "Selected source";
+  $("sourceHelp").textContent=`${label} · ${pool.length} currently available.`;
+  const count=$("count");
+  [...count.options].forEach(opt=>{
+    if(opt.value==="all") return;
+    opt.disabled=Number(opt.value)>pool.length;
+  });
+  const selected=count.options[count.selectedIndex];
+  if(selected && selected.disabled){
+    const usable=[...count.options].filter(o=>!o.disabled && o.value!=="all");
+    count.value=usable.length?usable[usable.length-1].value:"all";
+  }
+}
+sourceSelect.addEventListener("change", updateSourceUI);
+
+function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function qstate(id){return state.questions[id]||{attempts:0,correct:0,wrong:0}}
+
+function renderDashboard(){
+  const answered=BANK.filter(q=>qstate(q.id).attempts>0).length;
+  const attempts=BANK.reduce((n,q)=>n+qstate(q.id).attempts,0);
+  const correct=BANK.reduce((n,q)=>n+qstate(q.id).correct,0);
+  const missed=BANK.filter(q=>qstate(q.id).wrong>0).length;
+  const correctness=attempts?Math.round(correct/attempts*100):0;
+  const coverage=Math.round(answered/BANK.length*100);
+  $("stats").innerHTML=`
+    <div class="stat"><div class="n">${answered}/${BANK.length}</div><div class="l">Questions answered</div></div>
+    <div class="stat"><div class="n">${coverage}%</div><div class="l">Bank coverage</div></div>
+    <div class="stat"><div class="n">${correctness}%</div><div class="l">Correctness</div></div>
+    <div class="stat"><div class="n">${missed}</div><div class="l">Questions ever missed</div></div>
+    <div class="stat"><div class="n">${state.testsCompleted||0}</div><div class="l">Formal tests completed</div></div>`;
+  $("domainRows").innerHTML=DOMAINS.map(d=>{
+    const qs=BANK.filter(q=>q.domain===d);
+    const uniq=qs.filter(q=>qstate(q.id).attempts>0).length;
+    const att=qs.reduce((n,q)=>n+qstate(q.id).attempts,0);
+    const cor=qs.reduce((n,q)=>n+qstate(q.id).correct,0);
+    const mis=qs.filter(q=>qstate(q.id).wrong>0).length;
+    const cov=Math.round(uniq/qs.length*100);
+    const acc=att?Math.round(cor/att*100):0;
+    return `<tr><td><strong>${d}</strong></td><td>${uniq}/${qs.length}</td>
+      <td><div class="bar"><i style="width:${cov}%"></i></div> ${cov}%</td>
+      <td>${att}</td><td><div class="bar"><i style="width:${acc}%"></i></div> ${acc}%</td><td>${mis}</td></tr>`
+  }).join('');
+}
+
+let session=null;
+
+function buildPool(mode){
+  if(mode==="formal") return BANK;
+  if(mode==="missed") return BANK.filter(q=>qstate(q.id).wrong>0);
+  return sourcePool();
+}
+
+function start(mode){
+  let pool=buildPool(mode);
+  if(!pool.length){alert(mode==="missed"?"No missed questions are saved yet.":"No questions available for that selection.");return}
+  const n=mode==="formal"?20:($("count").value==="all"?pool.length:Math.min(Number($("count").value),pool.length));
+  const effectiveMode=(mode==="practice" && sourceSelect.value==="missed")?"missed":mode;
+  session={mode:effectiveMode, questions:shuffle(pool).slice(0,n), index:0, selected:null, answers:[], locked:false};
+  $("home").classList.add("hidden");$("results").classList.add("hidden");$("quiz").classList.remove("hidden");
+  renderQuestion();
+}
+
+function renderQuestion(){
+  const q=session.questions[session.index];
+  session.selected=null;session.locked=false;
+  $("feedback").className="feedback hidden";
+  $("feedback").textContent="";
+  $("modeBadge").textContent=session.mode==="formal"?"Formal test":session.mode==="missed"?"Focused review":"Practice";
+  $("domainBadge").textContent=q.domain+" · source p. "+q.sourcePage;
+  $("counter").textContent=`${session.index+1} / ${session.questions.length}`;
+  $("progressBar").style.width=((session.index)/session.questions.length*100)+"%";
+  $("question").textContent=q.question;
+  $("options").innerHTML=q.options.map((o,i)=>`<div class="option" data-i="${i}"><span class="letter">${["A","B","C","D"][i]}</span><span>${o}</span></div>`).join("");
+  document.querySelectorAll(".option").forEach(el=>el.onclick=()=>choose(Number(el.dataset.i)));
+  $("next").textContent=session.index===session.questions.length-1?"Finish":"Next";
+  $("next").disabled=false;
+}
+
+function record(q,chosen){
+  const s=qstate(q.id); s.attempts++; 
+  if(chosen===q.answer) s.correct++; else s.wrong++;
+  state.questions[q.id]=s; saveState();
+}
+
+function choose(i){
+  if(session.locked)return;
+  session.selected=i;
+  document.querySelectorAll(".option").forEach((el,idx)=>el.classList.toggle("selected",idx===i));
+  if(session.mode!=="formal"){
+    const q=session.questions[session.index];
+    session.locked=true;
+    record(q,i);
+    document.querySelectorAll(".option").forEach((el,idx)=>{
+      if(idx===q.answer)el.classList.add("correct");
+      if(idx===i&&i!==q.answer)el.classList.add("wrong");
+    });
+    const fb=$("feedback");fb.classList.remove("hidden");
+    if(i===q.answer){fb.classList.add("good");fb.textContent="Correct."}
+    else{fb.classList.add("bad");fb.textContent="Incorrect. Correct answer: "+q.options[q.answer]}
+  }
+}
+
+function next(){
+  if(session.selected===null){alert("Please choose an answer.");return}
+  const q=session.questions[session.index];
+  if(session.mode==="formal"){record(q,session.selected)}
+  session.answers.push({q,chosen:session.selected,correct:session.selected===q.answer});
+  if(session.index<session.questions.length-1){session.index++;renderQuestion()} else finish();
+}
+
+function finish(){
+  if(session.mode==="formal"){state.testsCompleted=(state.testsCompleted||0)+1;saveState()}
+  const score=session.answers.filter(a=>a.correct).length;
+  const total=session.answers.length;
+  const pct=Math.round(score/total*100);
+  const formal=session.mode==="formal";
+  const passed=formal && score>=15;
+  $("quiz").classList.add("hidden");$("results").classList.remove("hidden");
+  $("resultMode").textContent=formal?"Formal test result":"Practice result";
+  $("resultScore").textContent=`${score} / ${total}`;
+  $("resultScore").className="result-score "+(formal?(passed?"pass":"fail"):"");
+  $("resultTitle").textContent=formal?(passed?"PASS — you reached the 75% threshold.":"NOT YET — 15/20 is required to pass."):"Session complete";
+  $("resultMeta").textContent=`${pct}% correct · ${total-score} incorrect`;
+  const wrong=session.answers.filter(a=>!a.correct);
+  $("reviewList").innerHTML=wrong.length?`<h3>Questions to review (${wrong.length})</h3>`+
+    wrong.map(a=>`<div class="review-item"><strong>${a.q.question}</strong><div class="small" style="margin-top:6px">${a.q.domain}</div><div style="margin-top:7px">Correct answer: <b>${a.q.options[a.q.answer]}</b></div></div>`).join("")
+    :'<div class="notice" style="background:var(--green-soft);border-color:#b8dac9;color:var(--green)">Perfect score — no missed questions in this session.</div>';
+  renderDashboard();
+}
+
+$("startPractice").onclick=()=>start("practice");
+$("formalTest").onclick=()=>start("formal");
+$("missedOnly").onclick=()=>start("missed");
+$("next").onclick=next;
+$("quit").onclick=()=>{if(confirm("Quit this session and return to the dashboard?")){$("quiz").classList.add("hidden");$("home").classList.remove("hidden");renderDashboard()}};
+$("again").onclick=()=>start(session?.mode==="formal"?"formal":"practice");
+$("backHome").onclick=()=>{$("results").classList.add("hidden");$("home").classList.remove("hidden");renderDashboard()};
+$("reset").onclick=()=>{if(confirm("Delete all saved progress from this browser?")){state=defaultState();saveState();renderDashboard();updateSourceUI()}};
+renderDashboard();
+updateSourceUI();
+</script>
+</body>
+</html>
